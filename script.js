@@ -12,11 +12,14 @@ function auditNum(num){
         alert('Error: Not a whole number!');   
     } else if (!num?.trim()){
         alert('Error: Nothing entered!');
-    } else { 
-        const numUsers = num?.trim();
-        if (numUsers.length === 3){
-            let value = 0;
-            let count = 0;
+    } else if (Math.sign(+num) === -1) {
+        alert('Error: negative number!');
+    } 
+    else { 
+        let numUsers = +num?.trim();
+        numUsers = String(numUsers);
+        console.log(numUsers, typeof numUsers);
+        if ((numUsers.length === 3)){
             const arrNum = numUsers.split('').map(Number);
             arrNum.sort();
             const arrNumFirst = arrNum[0];
@@ -29,6 +32,7 @@ function auditNum(num){
                 case ((arrNumFirst === arrNumSecond)|| (arrNumSecond === arrNumLast)):
                     alert(`Дві введені цифри однакові`);
                     break;
+                default: alert('Число трьохзначне');
             }
         } else  alert('The number is not three-digit');
     }
